@@ -1,4 +1,3 @@
-
 // 1.
 function checkAdult(age) {
     if (age >= 19) {
@@ -20,7 +19,7 @@ function sum(start, end) {
 }
 sum(5, 20);
 
-//3.
+// 3.
 function gugudan(dan) {
     for (let i = 1; i <= 9; i++) {
         let result = dan * i;
@@ -34,7 +33,7 @@ function gugudan(dan) {
 }
 gugudan(5);
 
-//4.
+// 4.
 function gradePrint(korean, english, math) {
     let total = korean + english + math;
     let average = total / 3;
@@ -56,8 +55,7 @@ function gradeCalc(average) {
 }
 gradePrint(70, 70, 70);
 
-//5.
-
+// 5.
 function isPrime(num) {
     if (num < 2) {
         return false;
