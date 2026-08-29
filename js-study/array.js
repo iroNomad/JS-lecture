@@ -5,3 +5,7 @@ for (const likes of likeCounts) {
         console.log(likes);
     }
 }
+
+const something = () => {
+    return "Goodluck!";
+}
