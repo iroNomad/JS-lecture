@@ -1,0 +1,106 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username":"kaka"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "username": "yuna",
+      "caption": "새벽 러닝 🌙",
+      "likes": 2100,
+      "image": "https://picsum.photos/seed/post4/600/600",
+      "alt": "새벽 한강 산책로 사진",
+      "location": {
+        "name": "여의도한강공원",
+        "city": "서울"
+      },
+      "hashtags": ["새벽러닝", "한강", "러닝스타그램"]
+    },
+    {
+      "id": 2,
+      "username": "dahye",
+      "caption": "밤 산책",
+      "likes": 88,
+      "image": "https://picsum.photos/seed/post5/600/600",
+      "alt": "가로등이 켜진 밤길 사진",
+      "hashtags": ["밤산책"]
+    },
+    {
+      "id": 3,
+      "username": "jaehoon",
+      "caption": "오늘 한강 노을 실화냐 🌇",
+      "likes": 1240,
+      "image": "https://picsum.photos/seed/post1/600/600",
+      "alt": "한강에서 찍은 노을 사진",
+      "hashtags": ["한강", "노을", "서울", "실화냐"]
+    },
+    {
+      "id": 4,
+      "username": "minji",
+      "caption": "새로 생긴 카페 ☕",
+      "likes": 0,
+      "image": "https://picsum.photos/seed/post2/600/600",
+      "alt": "카페에서 마신 커피 사진",
+      "hashtags": []
+    },
+    {
+      "id": 5,
+      "username": "seungwoo",
+      "caption": "3년 만에 다시 뛰었다",
+      "likes": 320,
+      "image": "https://picsum.photos/seed/post6/600/600",
+      "alt": "운동장 트랙 사진",
+      "location": { "name": "부산아시아드주경기장", "city": "부산" },
+      "hashtags": ["러닝", "복귀"]
+    },
+    {
+      "id": 6,
+      "username": "yuna",
+      "caption": "오늘도 5km",
+      "likes": 940,
+      "image": "https://picsum.photos/seed/post7/600/600",
+      "alt": "러닝 기록이 찍힌 화면 사진",
+      "location": { "name": "여의도한강공원", "city": "서울" },
+      "hashtags": ["새벽러닝", "러닝"]
+    },
+    {
+      "id": 7,
+      "username": "jaehoon",
+      "caption": "퇴근길 하늘",
+      "likes": 640,
+      "image": "https://picsum.photos/seed/post8/600/600",
+      "alt": "퇴근길에 올려다본 하늘 사진",
+      "hashtags": ["노을"]
+    },
+    {
+      "id": 8,
+      "username": "yuna",
+      "caption": "러닝화 새로 샀다",
+      "likes": 1580,
+      "image": "https://picsum.photos/seed/post9/600/600",
+      "alt": "새로 산 러닝화 사진",
+      "location": { "name": "성수동", "city": "서울" },
+      "hashtags": ["러닝", "러닝스타그램"]
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "postId": 1,
+      "text": "와 새벽 러닝이라니 멋있어요!"
+    },
+    {
+      "id": 2,
+      "postId": 2,
+      "text": "가로등 불빛이 너무 예쁘네요!"
+    },
+    {
+      "id": 3,
+      "postId": 1,
+      "text": "별말씀을요... ㅎㅎㅎ"
+    }
+  ]
+}
