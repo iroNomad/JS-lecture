@@ -1,0 +1,316 @@
+:root {
+    --primary-red: #ef5350;
+    --secondary-blue: #2979ff;
+    --dark-charcoal: #333;
+    --light-gray: #f7f7f7;
+    --skeleton-gray: #e0e0e0;
+    --white: #fff;
+}
+
+body {
+    font-family: 'Nunito Sans', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--light-gray);
+    color: var(--dark-charcoal);
+}
+
+h1 {
+    color: var(--primary-red);
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.pokemon-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* 카드 사이 간격 */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pokemon {
+    width: 160px;
+    padding: 15px;
+    border-radius: 12px;
+    background-color: var(--white);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition:
+            transform 0.2s ease-in-out,
+            box-shadow 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pokemon:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.pokemon img {
+    width: 120px;
+    height: 120px;
+}
+
+.pokemon h3 {
+    margin: 10px 0 0 0;
+    font-size: 1.1rem;
+    text-transform: capitalize; /* 첫 글자 대문자 */
+}
+
+/* 몬스터볼 로딩 애니메이션 */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.pokeball-loader {
+    width: 60px;
+    height: 60px;
+    background-color: var(--white);
+    border-radius: 50%;
+    position: relative;
+    border: 3px solid var(--dark-charcoal);
+    animation: spin 1s linear infinite;
+}
+.pokeball-loader::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--dark-charcoal);
+    transform: translateY(-50%);
+}
+.pokeball-loader::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 18px;
+    height: 18px;
+    background-color: var(--white);
+    border: 3px solid var(--dark-charcoal);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+.pokeball-loader > div {
+    width: 100%;
+    height: 50%;
+    background-color: var(--primary-red);
+    border-radius: 30px 30px 0 0;
+    border-bottom: 3px solid var(--dark-charcoal);
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 모달 디자인 개선 */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    z-index: 999;
+}
+
+#modal {
+    width: 90%;
+    max-width: 450px; /* 최대 너비 설정 */
+    position: fixed;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    padding: 25px;
+    display: none;
+    z-index: 1000;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid var(--dark-charcoal);
+    border-top: 20px solid var(--primary-red);
+}
+/* 모달의 컨텐츠들이 배경 이미지 위에 오도록 z-index를 설정합니다 */
+#modal > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* 배경 이미지를 위한 가상 요소 스타일 */
+#modal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-image: var(--modal-bg-image, none);
+
+    background-size: 120%; /* 배경 이미지 크기 */
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.1; /* 매우 은은하게 보이도록 투명도 설정 */
+
+    /* 컨텐츠 뒤에 위치하도록 z-index 설정 */
+    z-index: 1;
+}
+/* ✨ --- 스켈레톤 UI를 위한 스타일 (추가) --- ✨ */
+.skeleton {
+    background-color: var(--skeleton-gray);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden; /* 반짝이는 효과를 위해 필수 */
+}
+.skeleton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    height: 100%;
+    width: 150%;
+    background: linear-gradient(
+            to right,
+            transparent 0%,
+            rgba(255, 255, 255, 0.5) 50%,
+            transparent 100%
+    );
+    animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer {
+    from {
+        left: -150%;
+    }
+    to {
+        left: 150%;
+    }
+}
+
+#modal-skeleton .skeleton-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+#modal-skeleton .skeleton-title {
+    width: 60%;
+    height: 2rem;
+    margin-bottom: 15px;
+}
+#modal-skeleton .skeleton-text {
+    width: 80%;
+    height: 1rem;
+    margin-bottom: 20px;
+}
+#modal-skeleton .skeleton-section {
+    width: 100%;
+    margin-bottom: 15px;
+}
+#modal-skeleton .skeleton-h3 {
+    width: 40%;
+    height: 1.5rem;
+    margin-bottom: 10px;
+}
+#modal-skeleton .skeleton-types {
+    display: flex;
+    gap: 8px;
+}
+#modal-skeleton .skeleton-type {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+/* --- 스켈레톤 UI 스타일 끝 --- */
+
+/* 실제 컨텐츠 스타일 */
+#modal-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#modal h2 {
+    margin: 0 0 15px 0;
+    font-size: 1.8rem;
+    text-transform: capitalize;
+}
+#modalImage {
+    width: 150px;
+    height: 150px;
+    background-color: var(--light-gray);
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 3px solid var(--dark-charcoal);
+}
+#modalDetails {
+    font-size: 1rem;
+    margin: 0 0 20px 0;
+}
+
+.modal-section {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 15px;
+}
+.modal-section h3 {
+    margin: 0 0 10px 0;
+    border-bottom: 2px solid var(--light-gray);
+    padding-bottom: 5px;
+}
+#modalTypes,
+.damage-relation-icons {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+}
+#modalTypes li,
+.damage-relation-icons li {
+    margin-right: 8px;
+    margin-bottom: 5px;
+}
+#modalTypes img,
+.damage-relation-icons img {
+    width: 24px;
+    height: 24px;
+}
+#closeModal {
+    margin-top: 20px;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary-red);
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+#closeModal:hover {
+    background-color: #d32f2f;
+}
