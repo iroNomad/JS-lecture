@@ -3,6 +3,7 @@ const pokeContainer = document.querySelector('.pokemon-container');
 const prevBtn = document.querySelector('#prev');
 const nextBtn = document.querySelector('#next');
 const modal = document.querySelector('#modal');
+const modalImg = document.querySelector('#modalImage');
 const overlay = document.querySelector('#overlay');
 const closeModalBtn = document.querySelector('#closeModal');
 
@@ -71,11 +72,12 @@ nextBtn.addEventListener('click', () => {
 const openModal = async (pokemonName) => {
     modal.style.display = 'flex';
     overlay.style.display = 'flex';
-
-    console.log(`${url}/${pokemonName}`);
     const response = await fetch(`${url}/${pokemonName}`);
     const pokemonData = await response.json()
-    console.log(pokemonData.name);
+
+    console.log(pokemonData.sprites.front_default)
+    modalImg.src = pokemonData.sprites.front_default;
+    modal.style.display = 'flex';
 }
 //모달 닫기 함수
 const closeModal = () => {
@@ -95,6 +97,8 @@ pokeContainer.addEventListener('click', (event) => {
     const pokemonName = pokemonCard.dataset.name;
     openModal(pokemonName);
 })
+
+// 무한 스크롤링 옵저버 설정
 
 // 초기 실행 코드
 getPokemon();
