@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포켓몬 도감</title>
+    <link
+            rel="preconnect"
+            href="https://fonts.googleapis.com" />
+    <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,700&display=swap"
+            rel="stylesheet" />
+
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<button id="prev" disabled>Prev</button>
+<button id="next">Next</button>
+<h1>포켓몬 도감</h1>
+<div
+        class="pokemon-container"
+        id="pokemonContainer"></div>
+
+<!-- 로딩 인디케이터: 이제 텍스트가 아닌 몬스터볼입니다! -->
+<div
+        class="loading"
+        id="loading">
+    <div class="pokeball-loader"><div></div></div>
+</div>
+
+<!-- 모달 -->
+<div id="overlay"></div>
+<div id="modal">
+    <!-- ✨ 실제 컨텐츠가 들어갈 컨테이너 -->
+    <div
+            id="modal-content"
+            style="display: none">
+        <h2 id="modalTitle"></h2>
+        <img
+                id="modalImage"
+                src=""
+                alt="포켓몬 이미지" />
+        <p id="modalDetails"></p>
+
+        <div class="modal-section">
+            <h3>타입</h3>
+            <ul id="modalTypes"></ul>
+        </div>
+
+        <div class="modal-section damage-relations">
+            <h3>2배 데미지를 받는 타입</h3>
+            <ul
+                    id="doubleDamage"
+                    class="damage-relation-icons"></ul>
+        </div>
+    </div>
+
+    <!-- ✨ 스켈레톤 UI가 들어갈 컨테이너 -->
+    <div
+            id="modal-skeleton"
+            style="
+          display: none;
+          width: 100%;
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+        ">
+        <div class="skeleton skeleton-image"></div>
+        <div class="skeleton skeleton-title"></div>
+        <div class="skeleton skeleton-text"></div>
+        <div class="skeleton-section">
+            <div class="skeleton skeleton-h3"></div>
+            <div class="skeleton-types">
+                <div class="skeleton skeleton-type"></div>
+                <div class="skeleton skeleton-type"></div>
+            </div>
+        </div>
+        <div class="skeleton-section">
+            <div class="skeleton skeleton-h3"></div>
+            <div class="skeleton-types">
+                <div class="skeleton skeleton-type"></div>
+                <div class="skeleton skeleton-type"></div>
+                <div class="skeleton skeleton-type"></div>
+            </div>
+        </div>
+    </div>
+
+    <button id="closeModal">닫기</button>
+</div>
+<script src="pokemon1.js"></script>
+</body>
+</html>

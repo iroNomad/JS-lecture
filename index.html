@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <h1 id="main">Wow</h1>
+        <script>
+            const element = document.getElementById('main');
+            const text = fetch('http://localhost:3001/posts/1')
+                .then(response => response.json()) // Parse JSON first
+                .then(data => {
+                    element.innerHTML = data.username;
+                });
+        </script>
+    </body>
+</html>

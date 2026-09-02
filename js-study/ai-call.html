@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+    <button id="call-ai" onclick=aiCall()>AI Call</button>
+    <p id="ai-result"></p>
+        <script>
+            const API_KEY =
+            const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent'
+
+            function aiCall() {
+                console.log('Calling AI...');
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'x-goog-api-key': API_KEY,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        contents: [
+                            {
+                                "parts": [
+                                    {
+                                        text: 'Explain how AI works in simple terms'
+                                    }
+                                ]
+                            }
+                        ],
+                    })
+                })
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log(result);
+                        const textResult = result.candidates[0].content.parts[0].text;
+                        document.getElementById('ai-result').innerText = textResult;
+                    })
+                ;
+            }
+        </script>
+    </body>
+</html>
