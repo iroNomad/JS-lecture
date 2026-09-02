@@ -3,7 +3,9 @@ const pokeContainer = document.querySelector('.pokemon-container');
 const prevBtn = document.querySelector('#prev');
 const nextBtn = document.querySelector('#next');
 const modal = document.querySelector('#modal');
+const modalContent = document.querySelector('#modal-content');
 const modalImg = document.querySelector('#modalImage');
+const modalSekeleton = document.querySelector('#modal-skeleton');
 const overlay = document.querySelector('#overlay');
 const closeModalBtn = document.querySelector('#closeModal');
 const loadingSpinner = document.querySelector('#loading');
@@ -13,6 +15,7 @@ const url = 'https://pokeapi.co/api/v2/pokemon';
 let offset = 0;
 let limit = 40;
 let pokeCount = 0;
+let hasNext = true;
 
 // 함수 정의
 const renderPokemonList = async (pokemonList) => {
@@ -41,8 +44,11 @@ const renderPokemonList = async (pokemonList) => {
 async function getPokemon() {
 
     const response = await fetch(url + `?offset=${offset}&limit=${limit}`);
-    const { count, results } = await response.json();
+    const { count, results, next } = await response.json();
     pokeCount = count;
+    if (!next) {
+        hasNext = false;
+    }
 
     renderPokemonList(results);
 
@@ -74,11 +80,12 @@ const openModal = async (pokemonName) => {
     modal.style.display = 'flex';
     overlay.style.display = 'flex';
     const response = await fetch(`${url}/${pokemonName}`);
-    const pokemonData = await response.json()
+    const pokemonData = await response.json();
 
+    modalSekeleton.style.display = 'none';
+    modalContent.style.display = 'flex';
     console.log(pokemonData.sprites.front_default)
     modalImg.src = pokemonData.sprites.front_default;
-    modal.style.display = 'flex';
 }
 //모달 닫기 함수
 const closeModal = () => {
@@ -103,8 +110,10 @@ pokeContainer.addEventListener('click', (event) => {
 const observer = new IntersectionObserver((entries) => {
     if (entries[0].isIntersecting) {
         offset += limit;
-        if (offset > pokeCount) {
-            alert('All pokemon loaded');
+        if (!hasNext) {
+            loadingSpinner.innerHTML = '<p>No more Pokémon to load.</p>';
+            observer.unobserve(loadingSpinner);
+            return;
         }
         getPokemon();
     }
