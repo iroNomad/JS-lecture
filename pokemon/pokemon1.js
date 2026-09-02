@@ -6,6 +6,7 @@ const modal = document.querySelector('#modal');
 const modalImg = document.querySelector('#modalImage');
 const overlay = document.querySelector('#overlay');
 const closeModalBtn = document.querySelector('#closeModal');
+const loadingSpinner = document.querySelector('#loading');
 
 // 전역 변수 선언
 const url = 'https://pokeapi.co/api/v2/pokemon';
@@ -99,6 +100,18 @@ pokeContainer.addEventListener('click', (event) => {
 })
 
 // 무한 스크롤링 옵저버 설정
+const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+        offset += limit;
+        if (offset > pokeCount) {
+            alert('All pokemon loaded');
+        }
+        getPokemon();
+    }
+});
+
+// 옵저버의 감시 대상 감시병을 붙임
+observer.observe(loadingSpinner);
 
 // 초기 실행 코드
 getPokemon();
