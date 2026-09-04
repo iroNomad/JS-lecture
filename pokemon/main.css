@@ -15,6 +15,9 @@ body {
     background-color: var(--light-gray);
     color: var(--dark-charcoal);
 }
+body.dark-mode {
+    background-color: #121212;
+}
 
 h1 {
     color: var(--primary-red);
@@ -24,6 +27,8 @@ h1 {
 }
 
 #darkModeButton {
+    background-color: var(--dark-charcoal);
+    color: var(--white);
     position: fixed;
     top: 1rem;
     right: 1rem;

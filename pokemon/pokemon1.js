@@ -9,6 +9,7 @@ const modalSekeleton = document.querySelector('#modal-skeleton');
 const overlay = document.querySelector('#overlay');
 const closeModalBtn = document.querySelector('#closeModal');
 const loadingSpinner = document.querySelector('#loading');
+const darkModeButton = document.querySelector('#darkModeButton');
 
 // 전역 변수 선언
 const url = 'https://pokeapi.co/api/v2/pokemon';
@@ -121,6 +122,11 @@ const observer = new IntersectionObserver((entries) => {
 
 // 옵저버의 감시 대상 감시병을 붙임
 observer.observe(loadingSpinner);
+
+// 다크 모드 토글 이벤트
+darkModeButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+});
 
 // 초기 실행 코드
 getPokemon();
